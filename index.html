@@ -1933,7 +1933,9 @@
 
   if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("sw.js").catch(() => {});
+      // ?v= — чтобы при новой версии браузер гарантированно скачал свежий sw.js,
+      // а не взял его из кэша
+      navigator.serviceWorker.register("sw.js?v=" + APP_VERSION).catch(() => {});
     });
   }
 
